@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <!--la tarjeta card -->
+        <div class="card">
+            <!--tarjeta-->
+            <div class="card-body">
+                <form action="/editarVentas/" method="POST">
+                {% csrf_token %}
+                <!--formulario-->
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_ventas"  name="txtid_ventas" class="form-control"  value="{{misVentas.id_ventas}}" required/>
+                    </div>
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_empleado"  name="txtid_empleado" class="form-control"  value="{{misVentas.id_empleado}}" required/>
+                    </div>
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_cliente"  name="txtid_cliente" class="form-control"  value="{{misVentas.id_cliente}}" required/>
+                    </div>
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_producto"  name="txtid_producto" class="form-control"  value="{{misVentas.id_producto}}" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="txtcantidad"  name="txtcantidad" class="form-control"  value="{{misVentas.cantidad}}"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="date"  id="txtfecha_venta"  name="txtfecha_venta" class="form-control"  value="{{misVentas.fecha_venta}}"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="txttotal"  name="txttotal" class="form-control"  value="{{misVentas.total}}"   required/>
+                    </div>        
+                    <div class="from-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!--fin de la tarjeta card -->
+    </div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}

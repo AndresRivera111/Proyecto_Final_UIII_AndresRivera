@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+  <!--la fila-->
+  <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <!--Columna izq-->
+    <h1>Ventas</h1>
+    <div class="card">
+      <!--tarjeta-->
+      <div class="card-body">
+        <form action="/registrarVentas/" method="POST">
+          {% csrf_token %}
+          <!--formulario-->
+          <div class="from-group py-3">
+            <input type="number"  id="txtid_ventas"  name="txtid_ventas" class="form-control"  placeholder="Id Ventas" required/>
+          </div>
+          <div class="from-group py-3">
+            <input type="number"  id="txtid_empleado"  name="txtid_empleado" class="form-control"  placeholder="Id Empleado" required/>
+          </div>
+          <div class="from-group py-3">
+            <input type="number"  id="txtid_cliente"  name="txtid_cliente" class="form-control"  placeholder="Id Clientes" required/>
+          </div>
+          <div class="from-group py-3">
+            <input type="number"  id="txtid_producto"  name="txtid_producto" class="form-control"  placeholder="Id Producto" required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="txtcantidad"  name="txtcantidad" class="form-control"  placeholder="Cantidad"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="date"  id="txtfecha_venta"  name="txtfecha_venta" class="form-control"  placeholder="Fecha de venta"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="txttotal"  name="txttotal" class="form-control"  placeholder="Total"   required/>
+          </div>
+          <div class="from-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Columna izq-->
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <!--Columna der -->
+    <h1>Listado de Ventas</h1>
+    <img class="w-50" src="{% static 'img/ventas.jpg' %}" alt="Trulli" width="200" height="200">
+    <div class="table-responsive">
+      <!-- tabla responsiva-->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id de Venta</th>
+            <th scope="col">Id de Empleado</th>
+            <th scope="col">Id de Cliente</th>
+            <th scope="col">Id de Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha de Venta</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in misVentas %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{m.id_ventas}}</td>
+            <td>{{m.id_empleado}}</td>
+            <td>{{m.id_cliente}}</td>
+            <td>{{m.id_producto}}</td>           
+            <td>{{m.cantidad}}</td>
+            <td>{{m.horario}}</td>
+            <td>{{m.fecha_venta}}</td>
+            <td>{{m.total}}</td>
+            <td>
+              <a href="seleccionarVentas/{{m.id_ventas}}" class="btn btn-info">Editar</a>
+            </td>
+            <!--Falta link-->
+            <td>
+              <a href="borrarVentas/{{m.id_ventas}}" class="btn btn-danger">Borrar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Columna der -->
+</div>
+<!--la fila-->
+{% endblock %}
