@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+  <!--la fila-->
+  <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <!--Columna izq-->
+    <h1>Clientes</h1>
+    <div class="card">
+      <!--tarjeta-->
+      <div class="card-body">
+        <form action="/registrarClientes/" method="POST">
+          {% csrf_token %}
+          <!--formulario-->
+          <div class="from-group py-3">
+            <input type="number"  id="txtid_clientes"  name="txtid_clientes" class="form-control"  placeholder="Id Clientes"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtnombre"  name="txtnombre" class="form-control"  placeholder="Nombre" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="txtedad"  name="txtedad" class="form-control"  placeholder="Edad"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtcorreo_electronico"  name="txtcorreo_electronico" class="form-control"  placeholder="Correo Electronico" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="txttelefono"  name="txttelefono" class="form-control"  placeholder="Telefono" minlength="1"  maxlength="20"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtdireccion"  name="txtdireccion" class="form-control"  placeholder="Direccion" minlength="1"  maxlength="40" required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtforma_pago"  name="txtforma_pago" class="form-control"  placeholder="Forma de pago" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Columna izq-->
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <!--Columna der -->
+    <h1>Listado de Clientes</h1>
+    <img class="w-50" src="{% static 'img/clientes.jpg' %}" alt="Trulli" width="200" height="200">
+    <div class="table-responsive">
+      <!-- tabla responsiva-->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Correo Electronico</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Forma de Pago</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in misClientes %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{m.id_clientes}}</td>
+            <td>{{m.nombre}}</td>
+            <td>{{m.edad}}</td>
+            <td>{{m.correo_electronico}}</td>
+            <td>{{m.telefono}}</td>
+            <td>{{m.direccion}}</td>
+            <td>{{m.forma_pago}}</td>
+            <td>
+              <a href="seleccionarClientes/{{m.id_clientes}}" class="btn btn-info">Editar</a>
+            </td>
+            <!--Falta link-->
+            <td>
+              <a href="borrarClientes/{{m.id_clientes}}" class="btn btn-danger">Borrar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Columna der -->
+</div>
+<!--la fila-->
+{% endblock %}
