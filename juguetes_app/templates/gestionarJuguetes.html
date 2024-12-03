@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+  <!--la fila-->
+  <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <!--Columna izq-->
+    <h1>Juguetes</h1>
+    <div class="card">
+      <!--tarjeta-->
+      <div class="card-body">
+        <form action="/registrarJuguetes/" method="POST">
+          {% csrf_token %}
+          <!--formulario-->
+          <div class="from-group py-3">
+            <input type="text"  id="txtid"  name="txtid" class="form-control"  placeholder="Id Juguetes" minlength="1"  maxlength="6"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtnombre"  name="txtnombre" class="form-control"  placeholder="Nombre" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtmarca"  name="txtmarca" class="form-control"  placeholder="Marca" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="date"  id="txtfecha_fabricacion"  name="txtfecha_fabricacion" class="form-control"  placeholder="Fecha de fabricacion"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="numbprecio"  name="numbprecio" class="form-control"  placeholder="Precio"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtproveedor"  name="txtproveedor" class="form-control"  placeholder="Proveedor" minlength="1"  maxlength="50"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtclasificacion"  name="txtclasificacion" class="form-control"  placeholder="Clasificacion" minlength="1"  maxlength="50"  required/>
+          </div>
+          <div class="from-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Columna izq-->
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <!--Columna der -->
+    <h1>Listado de Juguetes</h1>
+    <img class="w-50" src="{% static 'img/jugueteria.jpg' %}" alt="Trulli" width="200" height="200">
+    <div class="table-responsive">
+      <!-- tabla responsiva-->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Fecha de fabricacion</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Clasificacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in misJuguetes %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{m.id}}</td>
+            <td>{{m.nombre}}</td>
+            <td>{{m.marca}}</td>
+            <td>{{m.fecha_fabricacion}}</td>
+            <td>{{m.precio}}</td>
+            <td>{{m.proveedor}}</td>
+            <td>{{m.clasificacion}}</td>
+            <td>
+              <a href="seleccionarJuguetes/{{m.id}}" class="btn btn-info"
+                >Editar</a
+              >
+            </td>
+            <!--Falta link-->
+            <td>
+              <a href="borrarJuguetes/{{m.id}}" class="btn btn-danger"
+                >Borrar</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Columna der -->
+</div>
+<!--la fila-->
+{% endblock %}

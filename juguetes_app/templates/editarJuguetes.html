@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <!--la tarjeta card -->
+        <div class="card">
+            <!--tarjeta-->
+            <div class="card-body">
+                <form action="/editarJuguetes/" method="POST">
+                {% csrf_token %}
+                <!--formulario-->
+                    <div class="from-group">
+                        <input type="text"  id="txtid" name="txtid"  class="form-control"  value="{{misJuguetes.id}}"  minlength="1"  maxlength="6" placeholder="Id" readonly required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtnombre" name="txtnombre"  class="form-control"  value="{{misJuguetes.nombre}}"  minlength="1"  maxlength="6" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtmarca" name="txtmarca"  class="form-control"  value="{{misJuguetes.marca}}"  minlength="1"  maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="date"  id="txtfecha_fabricacion" name="txtfecha_fabricacion"  class="form-control"  value="{{misJuguetes.fecha_fabricacion}}"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="numbprecio" name="numbprecio"  class="form-control"  value="{{misJuguetes.precio}}" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtproveedor" name="txtproveedor"  class="form-control"  value="{{misJuguetes.proveedor}}"  minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtclasificacion" name="txtclasificacion"  class="form-control"  value="{{misJuguetes.clasificacion}}"  minlength="1"  maxlength="40"   required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!--fin de la tarjeta card -->
+    </div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
