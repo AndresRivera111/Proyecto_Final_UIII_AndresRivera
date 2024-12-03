@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+  <!--la fila-->
+  <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <!--Columna izq-->
+    <h1>Empleados</h1>
+    <div class="card">
+      <!--tarjeta-->
+      <div class="card-body">
+        <form action="/registrarEmpleados/" method="POST">
+          {% csrf_token %}
+          <!--formulario-->
+          <div class="from-group py-3">
+            <input type="number"  id="txtid_empleado"  name="txtid_empleado" class="form-control"  placeholder="Id Empleado"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtnombre"  name="txtnombre" class="form-control"  placeholder="Nombre" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="txtedad"  name="txtedad" class="form-control"  placeholder="Edad"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtrfc"  name="txtrfc" class="form-control"  placeholder="RFC" minlength="1"  maxlength="40" required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtcurp"  name="txtcurp" class="form-control"  placeholder="CURP" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="text"  id="txtcorreo_electronico"  name="txtcorreo_electronico" class="form-control"  placeholder="Correo Electronico" minlength="1"  maxlength="40"  required/>
+          </div>
+          <div class="from-group py-2">
+            <input type="number"  id="txttelefono"  name="txttelefono" class="form-control"  placeholder="Telefono" minlength="1"  maxlength="20"  required/>
+          </div>
+          <div class="from-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Columna izq-->
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <!--Columna der -->
+    <h1>Listado de Empleados</h1>
+    <img class="w-50" src="{% static 'img/empleados.jpg' %}" alt="Trulli" width="200" height="200">
+    <div class="table-responsive">
+      <!-- tabla responsiva-->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">RFC</th>
+            <th scope="col">CURP</th>
+            <th scope="col">Correo Electronico</th>
+            <th scope="col">Telefono</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in misEmpleados %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{m.id_empleados}}</td>
+            <td>{{m.nombre}}</td>
+            <td>{{m.edad}}</td>
+            <td>{{m.rfc}}</td>
+            <td>{{m.curp}}</td>
+            <td>{{m.correo_electronico}}</td>
+            <td>{{m.telefono}}</td>
+            <td>
+              <a href="seleccionarEmpleados/{{m.id_empleado}}" class="btn btn-info"
+                >Editar</a
+              >
+            </td>
+            <!--Falta link-->
+            <td>
+              <a href="borrarEmpleados/{{m.id_empleado}}" class="btn btn-danger"
+                >Borrar</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Columna der -->
+</div>
+<!--la fila-->
+{% endblock %}

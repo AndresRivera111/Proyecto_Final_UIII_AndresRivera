@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <!--la tarjeta card -->
+        <div class="card">
+            <!--tarjeta-->
+            <div class="card-body">
+                <form action="/editarEmpleados/" method="POST">
+                {% csrf_token %}
+                <!--formulario-->
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_empleado"  name="txtid_empleado" class="form-control" value="{{misEmpleados.id_empleado}}"  readonly required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtnombre"  name="txtnombre" class="form-control"  value="{{misEmpleados.nombre}}" minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="txtedad"  name="txtedad" class="form-control"  value="{{misEmpleados.edad}}"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtrfc"  name="txtrfc" class="form-control"  value="{{misEmpleados.rfc}}" minlength="1"  maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtcurp"  name="txtcurp" class="form-control"  value="{{misEmpleados.curp}}" minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtcorreo_electronico"  name="txtcorreo_electronico" class="form-control"  value="{{misEmpleados.correo_electronico}}" minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="txttelefono"  name="txttelefono" class="form-control"  value="{{misEmpleados.telefono}}" minlength="1"  maxlength="20"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!--fin de la tarjeta card -->
+    </div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
