@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <!--la tarjeta card -->
+        <div class="card">
+            <!--tarjeta-->
+            <div class="card-body">
+                <form action="/editarMarcas/" method="POST">
+                {% csrf_token %}
+                <!--formulario-->
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_marca"  name="txtid_marca" class="form-control" value="{{misMarcas.id_marca}}"  readonly required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtnombre"  name="txtnombre" class="form-control"  value="{{misMarcas.nombre}}" minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtsucursal"  name="txtsucursal" class="form-control"  value="{{misMarcas.sucursal}}" minlength="1" maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtcorreo_electronico"  name="txtcorreo_electronico" class="form-control"  value="{{misMarcas.correo_electronico}}" minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="txttelefono"  name="txttelefono" class="form-control"  value="{{misMarcas.telefono}}" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtdistribuidores"  name="txtdistribuidores" class="form-control"  value="{{misMarcas.distribuidores}}" minlength="1"  maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txttipo_producto"  name="txttipo_producto" class="form-control"  value="{{misMarcas.tipo_producto}}" minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!--fin de la tarjeta card -->
+    </div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
