@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <!--la tarjeta card -->
+        <div class="card">
+            <!--tarjeta-->
+            <div class="card-body">
+                <form action="/editarSucursales/" method="POST">
+                {% csrf_token %}
+                <!--formulario-->
+                    <div class="from-group py-3">
+                        <input type="number"  id="txtid_sucursal" name="txtid_sucursal"  class="form-control"  value="{{misSucursales.id_sucursal}}"  minlength="1"  maxlength="6" placeholder="Id" readonly required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtnombre" name="txtnombre"  class="form-control"  value="{{misSucursales.nombre}}"  minlength="1"  maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtdireccion" name="txtdireccion"  class="form-control"  value="{{misSucursales.direccion}}"  minlength="1"  maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="number"  id="txttelefono" name="txttelefono"  class="form-control"  value="{{misSucursales.telefono}}"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txthorario" name="txthorario"  class="form-control"  value="{{misSucursales.horario}}" minlength="1"  maxlength="40" required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtcorreo_electronico" name="txtcorreo_electronico"  class="form-control"  value="{{misSucursales.correo_electronico}}"  minlength="1"  maxlength="40"  required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <input type="text"  id="txtcodigo_postal" name="txtcodigo_postal"  class="form-control"  value="{{misSucursales.codigo_postal}}"  minlength="1"  maxlength="40"   required/>
+                    </div>
+                    <div class="from-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <!--fin de la tarjeta card -->
+    </div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
