@@ -4,7 +4,7 @@ from django.db import models
 class Clientes(models.Model):
     id_clientes = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=40)
-    edad = models.IntegerField()
+    edad = models.DateField()
     correo_electronico = models.CharField(max_length=20)
     telefono = models.IntegerField()
     direccion = models.CharField(max_length=40)
